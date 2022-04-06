@@ -1,0 +1,64 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+
+    <div class="custom-border-bottom py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Whishlist</strong></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row mb-5">
+          <div class="col-md-9 order-1">
+
+            <div class="row align">
+              <div class="col-md-12 mb-5">
+                <div class="d-flex">
+                </div>
+              </div>
+            </div>
+            <div class="row mb-5">
+              {% if whishlists %}
+              {% for i in whishlists %}
+              <div class="col-lg-6 col-md-6 item-entry mb-4">
+                <a href="{% url 'product_detail' pk=i.product.pk %}" class="product-item md-height bg-gray d-block">
+                  <img src="{{i.product.product_image.url}}" alt="Image"  class="img-fluid" style="width:250px;height: 250px;">
+                </a>
+                <h2 class="item-title"><a href="{% url 'shop_single' %}">{{i.product.product_collection}}</a></h2>
+                <p class="mb-0">{{i.product.product_category}}</p>
+                <strong class="item-price">{{i.product.product_price}}</strong>
+
+                <div class="star-rating">
+                  <span class="icon-star2 text-warning"></span>
+                  <span class="icon-star2 text-warning"></span>
+                  <span class="icon-star2 text-warning"></span>
+                  <span class="icon-star2 text-warning"></span>
+                  <span class="icon-star2 text-warning"></span>
+                </div>
+              </div>
+              {% endfor %}
+              {% else %}
+                <h2>No Products In Whishlist</h2>
+              {% endif %}
+            </div>
+          </div>
+    </div>
+
+    
+  </div>  
+  </body>
+</html>
+{% endblock %}
